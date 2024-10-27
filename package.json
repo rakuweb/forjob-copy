@@ -1,0 +1,42 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "next dev --experimental-https",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.9.2",
+    "@emotion/react": "^11.11.3",
+    "@fontsource/noto-sans-jp": "^5.0.17",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@line/liff": "^2.23.2",
+    "graphql": "^16.8.1",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-ga4": "^2.1.0",
+    "react-hook-form": "^7.50.1",
+    "react-modal": "^3.16.1",
+    "react-resize-detector": "^10.0.1",
+    "react-slick": "^0.30.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^0.32.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-modal": "^3.16.3",
+    "@types/react-slick": "^0.23.13",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "typescript": "^5"
+  }
+}

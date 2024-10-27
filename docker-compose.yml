@@ -1,0 +1,22 @@
+# nextjs/docker-compose.yml
+
+version: "3.8"
+services:
+  nextjs:
+    container_name: nextjs-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: >
+      sh -c "if [ '$$NODE_ENV' = 'production' ]; then
+               yarn build && yarn start;
+             else
+               yarn dev;
+             fi"

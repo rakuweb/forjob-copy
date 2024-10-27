@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { initializeApollo } from "../../lib/apollo-client";
+import { initializeApollo } from "../../../lib/apollo-client";
 import { gql } from "@apollo/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,6 +15,7 @@ import AboutImageSlider from "@/component/company/image-slider";
 import RecruitmentSlider from "@/component/company/RecruitmentSlider";
 import EmployeeFeedbackSlider from "@/component/company/EmployeeFeedbackSlider";
 import Modal from "@/component/Modal";
+import { css } from "../../../../styled-system/css";
 import ToggleInfo from "@/component/company/toggleInfo";
 import OtherImageSlider from "@/component/company/slider";
 import EntryButton from "@/component/company/entryButton";
@@ -151,16 +152,43 @@ const CompanyPage = ({ company, relatedCompanies }: any) => {
         />
       </Head>
 
-      <div className="font-sans text-[#333]">
-        <div className="flex items-center p-2 font-bold">
+      <div
+        className={css({
+          fontFamily: "'Noto Sans JP', sans-serif",
+          color: "#333",
+        })}
+      >
+        <div
+          className={css({
+            display: "flex",
+            alignItems: "center",
+            padding: "10px",
+            fontWeight: "bold",
+          })}
+        >
           {logo.data && (
             <img
               src={`${baseURL}${logo.data.attributes.url}`}
               alt={`Top image of ${name}`}
-              className="text-[13px] p-2 shadow-[5px_5px_5px_rgba(0,0,0,0.1)] w-[10.67vw] md:w-[60px] md:h-[60px]"
+              className={css({
+                fontSize: "13px",
+                padding: "10px 10px",
+                boxShadow: "5px 5px 5px 0 rgba(0, 0, 0, 0.1)",
+
+                base: { width: `${40 / 3.75}vw` },
+                md: { width: "60px", height: "60px" },
+              })}
             />
           )}
-          <h1 className="text-[2.67vw] ml-[2.67vw] md:text-[14px] md:ml-[10px]">
+          <h1
+            className={css({
+              base: {
+                fontSize: `${10 / 3.75}vw`,
+                marginLeft: `${10 / 3.75}vw`,
+              },
+              md: { fontSize: "14px", marginLeft: `10px` },
+            })}
+          >
             {name}
           </h1>
         </div>
@@ -168,26 +196,97 @@ const CompanyPage = ({ company, relatedCompanies }: any) => {
           <img
             src={`${baseURL}${top_image.data.attributes.url}`}
             alt={`Top image of ${name}`}
-            className="h-[40vw] w-full object-cover md:h-[360px]"
+            className={css({
+              height: "auto",
+              base: {
+                width: "100%",
+                height: `${150 / 3.75}vw`,
+                objectFit: "cover",
+              },
+              md: { width: "100%", height: "360px" },
+            })}
           />
         )}
-        <div className="flex justify-center max-w-[1200px] my-[5.33vw] md:my-[30px] mx-auto">
-          <div className="max-w-[900px] w-[95%] mx-auto xl:w-full">
-            <div className="mx-auto">
-              <h2 className="font-bold text-[5.33vw] md:text-[40px]">
+        <div
+          className={css({
+            display: "flex",
+            justifyContent: "center",
+            maxWidth: "1200px",
+
+            base: { margin: `${20 / 3.75}vw auto` },
+            md: { margin: "30px auto" },
+          })}
+        >
+          <div
+            className={css({
+              maxWidth: "900px",
+              base: {
+                w: "95%",
+                margin: "0 auto",
+              },
+              xl: {
+                w: "100%",
+              },
+            })}
+          >
+            <div className={css({ margin: "auto" })}>
+              <h2
+                className={css({
+                  fontWeight: "bold",
+
+                  base: { fontSize: `${20 / 3.75}vw` },
+                  md: { fontSize: "40px" },
+                })}
+              >
                 {company.attributes.philosophy_title}
               </h2>
-              <p className="py-[1.33vw] text-[3.2vw] md:text-[14px]">
+              <p
+                className={css({
+                  padding: "10px 0",
+                  base: {
+                    fontSize: `${12 / 3.75}vw`,
+                    padding: `${5 / 3.75}vw 0`,
+                  },
+                  md: { fontSize: "14px" },
+                })}
+              >
                 {company.attributes.philosophy_explanation}
               </p>
             </div>
-            <div className="flex flex-wrap w-full">
+            <div
+              className={css({
+                display: "flex",
+                flexWrap: `wrap`,
+                width: "100%",
+              })}
+            >
               {occupations.data.length > 0 ? (
-                <ul className="flex flex-wrap">
+                <ul
+                  className={css({
+                    display: "flex",
+                    flexWrap: "wrap",
+                  })}
+                >
                   {occupations.data.map((occupation: any, index: number) => (
                     <li
+                      className={css({
+                        border: "1px solid #333",
+                        borderRadius: "100px",
+
+                        base: {
+                          fontSize: `${8 / 3.75}vw`,
+                          padding: `${2 / 3.75}vw ${10 / 3.75}vw`,
+                          marginRight: `${5 / 3.75}vw`,
+                          mb: `${5 / 3.75}vw`,
+                        },
+                        md: {
+                          fontSize: "10px",
+                          marginRight: "10px",
+                          padding: "5px 20px",
+                          mb: `10px`,
+                        },
+                      })}
                       key={index}
-                      className="border border-[#333] rounded-full text-[2.13vw] p-[0.53vw_2.67vw] mr-[1.33vw] mb-[1.33vw] md:text-[10px] md:mr-[10px] md:p-[5px_20px] md:mb-[10px]"
                     >
                       {occupation.attributes.occupation}
                     </li>
@@ -198,7 +297,27 @@ const CompanyPage = ({ company, relatedCompanies }: any) => {
               )}
 
               {industry.data ? (
-                <p className="border border-[#21BDDB] text-white bg-[#21BDDB] rounded-full text-[2.13vw] p-[0.53vw_2.67vw] mr-[1.33vw] mb-[1.33vw] md:text-[10px] md:mr-[10px] md:p-[5px_20px] md:mb-[10px]">
+                <p
+                  className={css({
+                    border: "1px solid #21BDDB",
+                    color: "#fff",
+                    backgroundColor: "#21BDDB",
+                    borderRadius: "100px",
+
+                    base: {
+                      fontSize: `${8 / 3.75}vw`,
+                      padding: `${2 / 3.75}vw ${10 / 3.75}vw`,
+                      marginRight: `${5 / 3.75}vw`,
+                      mb: `${5 / 3.75}vw`,
+                    },
+                    md: {
+                      fontSize: "10px",
+                      marginRight: "10px",
+                      padding: "5px 20px",
+                      mb: `10px`,
+                    },
+                  })}
+                >
                   {industry.data.attributes.industry}
                 </p>
               ) : (
@@ -206,10 +325,28 @@ const CompanyPage = ({ company, relatedCompanies }: any) => {
               )}
             </div>
 
-            <h2 className="font-bold text-[#21BDDB] text-[3.73vw] mt-[5.33vw] md:text-[18px] md:mt-[30px]">
+            <h2
+              className={css({
+                fontWeight: "bold",
+                color: "#21BDDB",
+
+                base: {
+                  fontSize: `${14 / 3.75}vw`,
+                  marginTop: `${20 / 3.75}vw`,
+                },
+                md: { fontSize: "18px", marginTop: "30px" },
+              })}
+            >
               企業について
             </h2>
-            <div className="w-full my-[2.67vw] md:m-[10px_auto_50px]">
+            <div
+              className={css({
+                width: "100%",
+
+                base: { margin: `${10 / 3.75}vw auto ${20 / 3.75}vw` },
+                md: { margin: "10px auto 50px" },
+              })}
+            >
               <AboutImageSlider images={aboutPhotos} />
             </div>
 
@@ -242,11 +379,22 @@ const CompanyPage = ({ company, relatedCompanies }: any) => {
               imageSrc={currentImage}
             />
 
-            <h2 className="font-bold text-[#21BDDB] text-[3.73vw] mt-[5.33vw] md:text-[18px] md:mt-[30px]">
+            <h2
+              className={css({
+                fontWeight: "bold",
+                color: "#21BDDB",
+
+                base: {
+                  fontSize: `${14 / 3.75}vw`,
+                  marginTop: `${20 / 3.75}vw`,
+                },
+                md: { fontSize: "18px", marginTop: "30px" },
+              })}
+            >
               募集している求人
             </h2>
 
-            <div className="w-full mx-auto">
+            <div style={{ margin: "auto", width: "100%" }}>
               {company.attributes.recruitments.data.length > 0 ? (
                 <RecruitmentSlider
                   recruitments={company.attributes.recruitments.data}
@@ -257,7 +405,18 @@ const CompanyPage = ({ company, relatedCompanies }: any) => {
               )}
             </div>
 
-            <h2 className="font-bold text-[#21BDDB] text-[3.73vw] mt-[13.33vw] md:text-[18px] md:mt-[30px]">
+            <h2
+              className={css({
+                fontWeight: "bold",
+                color: "#21BDDB",
+
+                base: {
+                  fontSize: `${14 / 3.75}vw`,
+                  marginTop: `${50 / 3.75}vw`,
+                },
+                md: { fontSize: "18px", marginTop: "30px" },
+              })}
+            >
               社員の声
             </h2>
             {company.attributes.feedbacks.data.length > 0 ? (
@@ -268,27 +427,92 @@ const CompanyPage = ({ company, relatedCompanies }: any) => {
             ) : (
               <p>社員の声はありません。</p>
             )}
-            <h2 className="font-bold text-[#21BDDB] text-[3.73vw] mt-[13.33vw] md:text-[18px] md:mt-[30px]">
+            <h2
+              className={css({
+                fontWeight: "bold",
+                color: "#21BDDB",
+
+                base: {
+                  fontSize: `${14 / 3.75}vw`,
+                  marginTop: `${50 / 3.75}vw`,
+                },
+                md: { fontSize: "18px", marginTop: "30px" },
+              })}
+            >
               会社情報
             </h2>
-            <div className="flex w-full flex-col md:flex-row">
-              <div className="w-full md:w-1/2">
-                <div className="flex items-center font-bold p-0 md:p-2.5">
+            <div
+              className={css({
+                display: "flex",
+                width: "100%",
+                base: { flexDirection: "column" },
+                md: { flexDirection: "row" },
+              })}
+            >
+              <div
+                className={css({
+                  base: { width: "100%" },
+                  md: { width: "50%" },
+                })}
+              >
+                <div
+                  className={css({
+                    display: "flex",
+                    alignItems: "center",
+
+                    fontWeight: "bold",
+                    base: { padding: "0" },
+                    md: { padding: "10px" },
+                  })}
+                >
                   {logo.data && (
                     <img
                       src={`${baseURL}${logo.data.attributes.url}`}
                       alt={`Top image of ${name}`}
-                      className="w-[8vw] max-w-[50px] p-[1.33vw] md:w-[50px] md:p-2.5"
+                      className={css({
+                        base: {
+                          width: `${30 / 3.75}vw`,
+                          maxWidth: "50px",
+                          padding: `${5 / 3.75}vw`,
+                        },
+                        md: { width: "50px", padding: "10px 10px" },
+                      })}
                     />
                   )}
-                  <h2 className="ml-2.5 text-[3.2vw] md:text-[14px]">{name}</h2>
+                  <h2
+                    className={css({
+                      margin: "0 0 0 10px",
+
+                      base: { fontSize: `${12 / 3.75}vw` },
+                      md: { fontSize: "14px" },
+                    })}
+                  >
+                    {name}
+                  </h2>
                 </div>
-                <p className="text-[3.2vw] md:text-[14px]">
-                  <FontAwesomeIcon icon={faLocationDot} className="w-4" />{" "}
-                  {company.attributes.address}
+                <p
+                  className={css({
+                    base: { fontSize: `${12 / 3.75}vw` },
+                    md: { fontSize: "14px" },
+                  })}
+                >
+                  <FontAwesomeIcon
+                    icon={faLocationDot}
+                    className={css({ width: "1em" })}
+                  />
+                  　{company.attributes.address}
                 </p>
-                <p className="text-[3.2vw] md:text-[14px]">
-                  <FontAwesomeIcon icon={faLink} className="w-4" />{" "}
+                <p
+                  className={css({
+                    base: { fontSize: `${12 / 3.75}vw` },
+                    md: { fontSize: "14px" },
+                  })}
+                >
+                  <FontAwesomeIcon
+                    icon={faLink}
+                    className={css({ width: "1em" })}
+                  />
+                  　
                   <a
                     href={company.attributes.url}
                     target="_blank"
@@ -297,65 +521,172 @@ const CompanyPage = ({ company, relatedCompanies }: any) => {
                     {company.attributes.url}
                   </a>
                 </p>
-                <p className="text-[3.2vw] md:text-[14px]">
-                  <FontAwesomeIcon icon={faPerson} className="w-4" />{" "}
-                  {company.attributes.employees}
+                <p
+                  className={css({
+                    base: { fontSize: `${12 / 3.75}vw` },
+                    md: { fontSize: "14px" },
+                  })}
+                >
+                  <FontAwesomeIcon
+                    icon={faPerson}
+                    className={css({ width: "1em" })}
+                  />
+                  　{company.attributes.employees}
                 </p>
-                <p className="text-[3.2vw] md:text-[14px]">
-                  <FontAwesomeIcon icon={faFlag} className="w-4" />{" "}
-                  {company.attributes.founding}
+                <p
+                  className={css({
+                    base: { fontSize: `${12 / 3.75}vw` },
+                    md: { fontSize: "14px" },
+                  })}
+                >
+                  <FontAwesomeIcon
+                    icon={faFlag}
+                    className={css({ width: "1em" })}
+                  />
+                  　{company.attributes.founding}
                 </p>
               </div>
               <div
-                className="w-full mt-[2.67vw] md:w-1/2 md:mt-0 overflow-hidden shadow-[5px_5px_5px_rgba(0,0,0,0.1)]"
+                className={css({
+                  overflow: "hidden",
+                  boxShadow: "5px 5px 5px 0 rgba(0, 0, 0, 0.1)",
+
+                  base: { width: "100%", marginTop: `${10 / 3.75}vw` },
+                  md: { width: "50%", marginTop: "0" },
+                })}
                 dangerouslySetInnerHTML={{ __html: company.attributes.map }}
               ></div>
             </div>
           </div>
-          <div className="hidden xl:block sticky top-[10px] z-[100] bg-white py-[10px] h-[300px] w-[220px] m-[30px_auto]">
-            <div className="flex items-center p-2.5 font-bold">
+          <div
+            className={css({
+              base: { display: "none" },
+              xl: {
+                display: "block",
+                position: "sticky",
+                top: 10,
+                zIndex: 100,
+                background: "#fff",
+                padding: "10px 0",
+                height: "300px",
+                margin: "30px auto",
+                width: "220px",
+              },
+            })}
+          >
+            <div
+              className={css({
+                display: "flex",
+                alignItems: "center",
+                padding: "10px",
+                fontWeight: "bold",
+              })}
+            >
               {logo.data && (
                 <img
                   src={`${baseURL}${logo.data.attributes.url}`}
                   alt={`Top image of ${name}`}
-                  className="text-[13px] p-[5px] shadow-[5px_5px_5px_rgba(0,0,0,0.1)] w-[30px]"
+                  className={css({
+                    fontSize: "13px",
+                    padding: "5px 5px",
+                    boxShadow: "5px 5px 5px 0 rgba(0, 0, 0, 0.1)",
+                    width: "30px",
+                  })}
                 />
               )}
-              <h2 className="ml-2.5 text-[12px]">{name}</h2>
+              <h2 className={css({ margin: "0 0 0 10px", fontSize: "12px" })}>
+                {name}
+              </h2>
             </div>
-            <div>
+            <div className={css({})}>
               <a
                 href={company.attributes.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[10px]"
+                className={css({ fontSize: "10px" })}
               >
-                <FontAwesomeIcon icon={faLink} className="w-4" />{" "}
+                <FontAwesomeIcon
+                  icon={faLink}
+                  className={css({ width: "1em" })}
+                />
+                <span> </span>
                 {company.attributes.url}
               </a>
-              <p className="text-[10px]">
-                <FontAwesomeIcon icon={faLocationDot} className="w-4" />{" "}
+              <p className={css({ fontSize: "10px" })}>
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className={css({ width: "1em" })}
+                />
+                <span> </span>
                 {company.attributes.address}
               </p>
             </div>
-            <div className="flex flex-col items-start">
-              <EntryButton onClick={handleApplyClick} />
-              <GoodButton handleLike={handleLike} />
-            </div>
+            {/* {isLoggedIn && ( */}
+            <>
+              <div
+                className={css({
+                  display: "flex",
+                  flexFlow: "column",
+                  alignItems: "flex-start",
+                })}
+              >
+                <EntryButton onClick={handleApplyClick} />
+                <GoodButton handleLike={handleLike} />
+              </div>
+            </>
+            {/* )} */}
           </div>
         </div>
-        <div className="bg-[#FAFAFA] mt-[8vw] p-[2.67vw] md:mt-[50px] md:p-[20px]">
-          <div className="max-w-[1200px] mx-auto">
-            <h2 className="font-bold text-[#21BDDB] text-[3.73vw] mt-[5.33vw] mb-[2.67vw] md:text-[18px] md:mt-[30px] md:mb-[10px]">
+        <div
+          className={css({
+            backgroundColor: "#FAFAFA",
+
+            base: { marginTop: `${30 / 3.75}vw`, padding: `${10 / 3.75}vw` },
+            md: { marginTop: "50px", padding: "20px" },
+          })}
+        >
+          <div className={css({ maxWidth: "1200px", margin: "auto" })}>
+            <h2
+              className={css({
+                fontWeight: "bold",
+                color: "#21BDDB",
+
+                base: {
+                  fontSize: `${14 / 3.75}vw`,
+                  marginTop: `${20 / 3.75}vw`,
+                  mb: `${10 / 3.75}vw`,
+                },
+                md: { fontSize: "18px", marginTop: "30px", mb: "10px" },
+              })}
+            >
               他の企業HP
             </h2>
+
             <OtherImageSlider companies={relatedCompanies} />
           </div>
         </div>
 
-        <div className="flex sticky bottom-2.5 p-2.5 z-[100] justify-around xl:hidden">
-          <EntryButton onClick={handleApplyClick} />
-          <GoodButton handleLike={handleLike} />
+        <div
+          className={css({
+            base: {
+              display: "flex",
+              position: "sticky",
+              bottom: "10px",
+              padding: "10px",
+
+              zIndex: 100,
+              justifyContent: "space-around",
+            },
+            xl: {
+              display: "none",
+            },
+          })}
+        >
+          {/* {isLoggedIn && ( */}
+          <>
+            <EntryButton onClick={handleApplyClick} />
+            <GoodButton handleLike={handleLike} />
+          </>
         </div>
       </div>
     </>

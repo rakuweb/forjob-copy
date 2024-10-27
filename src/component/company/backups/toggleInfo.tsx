@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { css } from "../../../styled-system/css";
+import { css } from "../../../../styled-system/css";
 import { useResizeDetector } from "react-resize-detector";
 
 const ToggleInfo = ({
@@ -43,16 +43,32 @@ const ToggleInfo = ({
   if (!hasData) return null;
 
   return (
-    <li className="border-t border-gray-200 py-[2.67vw] md:py-5">
-      <div className="w-[95%] mx-auto">
+    <li
+      className={css({
+        borderTop: "1px solid #eee",
+
+        base: { padding: `${10 / 3.75}vw 0` },
+        md: { padding: "20px 0" },
+      })}
+    >
+      <div className={css({ w: "95%", m: "auto" })}>
         <h3
           onClick={() => toggleAccordion(section)}
-          className="font-bold cursor-pointer flex items-center justify-between text-[3.2vw] md:text-base"
+          className={css({
+            fontWeight: "bold",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            base: { fontSize: `${12 / 3.75}vw` },
+            md: { fontSize: "16px" },
+          })}
         >
           {company.attributes[`about_title${section}`]}
           <FontAwesomeIcon
             icon={faChevronDown}
-            className="text-xs text-gray-600"
+            style={iconStyle}
+            className={css({ fontSize: "12px", color: "#555" })}
           />
         </h3>
         <div
@@ -61,20 +77,53 @@ const ToggleInfo = ({
             overflow: "hidden",
             transition: "max-height 0.3s ease-out",
           }}
+          className={css({})}
         >
-          <div ref={ref} className="pt-[2.67vw] md:pt-5">
-            <p className="leading-6 text-[3.2vw] md:text-sm">
+          <div
+            ref={ref}
+            className={css({
+              base: { paddingTop: `${10 / 3.75}vw` },
+              md: { paddingTop: "20px" },
+            })}
+          >
+            <p
+              className={css({
+                lineHeight: "1.6",
+
+                base: { fontSize: `${12 / 3.75}vw` },
+                md: { fontSize: "14px" },
+              })}
+            >
               {company.attributes[`about_text${section}`]}
             </p>
             {company.attributes[`about_photo${section}`].data.length > 0 && (
-              <div className="flex flex-row flex-wrap justify-between">
+              <div
+                className={css({
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "space-between",
+                })}
+              >
                 {company.attributes[`about_photo${section}`].data.map(
                   (photo: any, index: number) => (
                     <img
                       key={index}
                       src={`${baseURL}${photo.attributes.url}`}
                       alt={`About section image ${index + 1}`}
-                      className="w-[49%] object-cover cursor-pointer mt-4 rounded-lg h-[26.67vw] md:h-[300px]"
+                      style={{
+                        width: "49%",
+
+                        objectFit: "cover",
+                        cursor: "pointer",
+                      }}
+                      className={css({
+                        marginTop: "15px",
+                        borderRadius: "10px",
+
+                        base: { height: `${100 / 3.75}vw` },
+                        md: { height: "300px" },
+                      })}
                       onClick={() =>
                         openModal(`${baseURL}${photo.attributes.url}`)
                       }

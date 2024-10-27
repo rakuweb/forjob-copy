@@ -65,61 +65,24 @@ const EmployeeFeedbackSlider: React.FC<EmployeeFeedbackSliderProps> = ({
           <div
             key={feedback.id}
             onClick={() => handleFeedbackClick(feedback)}
-            className={css({
-              cursor: "pointer",
-              borderRadius: "5px",
-              maxHeight: "200px",
-            })}
+            className="font-sans cursor-pointer rounded-md max-h-[200px]"
           >
-            <div
-              className={css({
-                padding: "10px",
-
-                backgroundColor: "rgba(248, 248, 248, 1)",
-                borderRadius: "5px",
-
-                base: { padding: `${5 / 3.75}vw  ` },
-                md: { padding: "10px", margin: "0 10px 0 0" },
-              })}
-            >
-              <div className={css({ display: "flex", alignItems: "center" })}>
+            <div className="p-[1.33vw] md:p-2.5 bg-gray-100 rounded-md md:mr-2.5">
+              <div className="flex items-center">
                 <img
                   src={`${baseURL}${feedback.attributes.image.data.attributes.url}`}
                   alt={`Image of ${feedback.attributes.occupation}`}
-                  className={css({
-                    borderRadius: "100%",
-                    height: "50px",
-                    width: "50px",
-                    objectFit: "cover",
-                  })}
+                  className="rounded-full h-[50px] w-[50px] object-cover"
                 />
-                <p
-                  className={css({
-                    color: "#666",
-
-                    base: {
-                      fontSize: `${12 / 3.75}vw`,
-                      paddingLeft: `${10 / 3.75}vw`,
-                    },
-                    md: { fontSize: "12px", paddingLeft: "10px" },
-                  })}
-                >
+                <p className="text-gray-600 text-[3.2vw] md:text-xs pl-[2.67vw] md:pl-2.5">
                   {feedback.attributes.occupation}
                 </p>
-                <p
-                  className={css({
-                    color: "#666",
-                    base: {
-                      fontSize: `${12 / 3.75}vw`,
-                      paddingLeft: `${10 / 3.75}vw`,
-                    },
-                    md: { fontSize: "12px", paddingLeft: "10px" },
-                  })}
-                >
+                <p className="text-gray-600 text-[3.2vw] md:text-xs pl-[2.67vw] md:pl-2.5">
                   {feedback.attributes.age}
                 </p>
               </div>
               <p
+                className="font-sans text-gray-600 text-xs pt-2.5"
                 style={{
                   display: "-webkit-box",
                   WebkitLineClamp: 6,
@@ -127,11 +90,6 @@ const EmployeeFeedbackSlider: React.FC<EmployeeFeedbackSliderProps> = ({
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                 }}
-                className={css({
-                  color: "#666",
-                  fontSize: "12px",
-                  padding: "10px 0 0 0",
-                })}
               >
                 {feedback.attributes.text}
               </p>
@@ -144,62 +102,21 @@ const EmployeeFeedbackSlider: React.FC<EmployeeFeedbackSliderProps> = ({
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
         >
-          <div style={{ maxHeight: "80vh", overflow: "auto" }}>
-            <div
-              className={css({
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-              })}
-            >
+          <div className="max-h-[80vh] overflow-auto">
+            <div className="flex items-center w-full">
               <img
                 src={`${baseURL}${selectedFeedback.attributes.image.data.attributes.url}`}
                 alt={`Image of ${selectedFeedback.attributes.occupation}`}
-                style={{ objectFit: "cover" }}
-                className={css({
-                  borderRadius: "100%",
-                  base: { width: `${50 / 3.75}vw`, height: `${50 / 3.75}vw` },
-                  md: { width: "100px", height: "100px" },
-                })}
+                className="rounded-full w-[13.33vw] h-[13.33vw] md:w-[100px] md:h-[100px] object-cover"
               />
-              <p
-                className={css({
-                  base: {
-                    fontSize: `${12 / 3.75}vw`,
-                    paddingLeft: `${10 / 3.75}vw`,
-                  },
-                  md: { fontSize: "14px", paddingLeft: "20px" },
-                })}
-              >
+              <p className="text-[3.2vw] md:text-base pl-[2.67vw] md:pl-5">
                 {selectedFeedback.attributes.occupation}
               </p>
-              <p
-                className={css({
-                  base: {
-                    fontSize: `${12 / 3.75}vw`,
-                    paddingLeft: `${10 / 3.75}vw !important`,
-                  },
-                  md: { fontSize: "14px", paddingLeft: "20px" },
-                })}
-              >
+              <p className="text-[3.2vw] md:text-base pl-[2.67vw] md:pl-5">
                 {selectedFeedback.attributes.age}
               </p>
             </div>
-            <p
-              style={{ width: "100%" }}
-              className={css({
-                base: {
-                  fontSize: `${12 / 3.75}vw`,
-
-                  marginTop: `${10 / 3.75}vw`,
-                },
-                md: {
-                  fontSize: "14px",
-
-                  marginTop: "40px",
-                },
-              })}
-            >
+            <p className="text-[3.2vw] md:text-base mt-[2.67vw] md:mt-10 w-full">
               {selectedFeedback.attributes.text}
             </p>
           </div>

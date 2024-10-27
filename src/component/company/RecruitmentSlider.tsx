@@ -83,73 +83,27 @@ const RecruitmentSlider: React.FC<RecruitmentSliderProps> = ({
           <div
             key={recruitment.id}
             onClick={handleRecruitmentClick}
-            className={css({
-              // paddingRight: "5px",
-              _hover: {
-                cursor: "pointer",
-              },
-            })}
+            className="hover:cursor-pointer"
           >
-            <div
-              className={css({
-                borderRadius: "5px",
-                base: { margin: `0 0 0 0` },
-                md: { margin: "0 10px 0 0" },
-              })}
-            >
+            <div className="rounded-md md:mr-2.5">
               <img
                 src={`${baseURL}${recruitment.attributes.image.data.attributes.url}`}
                 alt={`Image of ${recruitment.attributes.occupation}`}
-                className={css({
-                  borderRadius: "5px",
-                  height: "200px",
-                  width: "100%",
-                  objectFit: "cover",
-
-                  base: {
-                    height: `${200 / 3.75}vw`,
-                    margin: `${5 / 3.75}vw 0 `,
-                  },
-                  md: { height: "200px", margin: " 10px 0 " },
-                })}
+                className="rounded-md h-[53.33vw] md:h-[200px] w-full object-cover my-[1.33vw] md:my-2.5"
               />
-              <h3
-                className={css({
-                  fontWeight: "bold",
-                  base: { fontSize: `${12 / 3.75}vw` },
-                  md: { fontSize: "14px" },
-                })}
-              >
+              <h3 className="font-bold text-[3.2vw] md:text-sm">
                 {recruitment.attributes.occupation}
               </h3>
-              <div className={css({ display: "flex", color: "#666" })}>
-                <p
-                  className={css({
-                    base: { fontSize: `${12 / 3.75}vw` },
-                    md: { fontSize: "14px" },
-                  })}
-                >
+              <div className="flex text-gray-500">
+                <p className="text-[3.2vw] md:text-sm">
                   <FontAwesomeIcon icon={faYenSign} />
                   <span> </span>
                   {recruitment.attributes.minimum_salary}〜
                 </p>
-                <p
-                  className={css({
-                    base: { fontSize: `${12 / 3.75}vw` },
-                    md: { fontSize: "14px" },
-                  })}
-                >
+                <p className="text-[3.2vw] md:text-sm">
                   {recruitment.attributes.maximum_salary}
                 </p>
-                <p
-                  className={css({
-                    base: {
-                      fontSize: `${12 / 3.75}vw`,
-                      marginLeft: `${10 / 3.75}vw`,
-                    },
-                    md: { fontSize: "14px", marginLeft: "15px" },
-                  })}
-                >
+                <p className="text-[3.2vw] md:text-sm ml-[2.67vw] md:ml-3.5">
                   <FontAwesomeIcon icon={faLocationDot} />
                   <span> </span>
                   {recruitment.attributes.work_place}
@@ -163,88 +117,33 @@ const RecruitmentSlider: React.FC<RecruitmentSliderProps> = ({
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       >
-        <div
-          style={{ padding: "20px 0" }}
-          className={css({
-            textAlign: "left",
-            base: { fontSize: `${10 / 3.75}vw` },
-            md: { fontSize: "14px" },
-            maxWidth: "300px",
-            margin: " auto",
-          })}
-        >
+        <div className="text-left text-[2.67vw] md:text-sm max-w-xs mx-auto py-5">
           <h2>求人総件数: {recruitments.length}件</h2>
         </div>
-        <div style={{ maxHeight: "80vh", overflow: "auto" }}>
+        <div className="max-h-[80vh] overflow-auto">
           {recruitments.map((recruitment) => (
             <div
               key={recruitment.id}
-              className={css({
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                base: {
-                  margin: `0 auto ${12 / 3.75}vw`,
-                  padding: `${12 / 3.75}vw`,
-                },
-                md: { margin: "0 auto 20px", padding: "20px" },
-              })}
+              className="flex flex-col items-center mx-auto my-[3.2vw] md:my-5 p-[3.2vw] md:p-5"
             >
               <img
                 src={`${baseURL}${recruitment.attributes.image.data.attributes.url}`}
                 alt={`Image of ${recruitment.attributes.occupation}`}
-                className={css({
-                  borderRadius: "5px",
-                  height: "auto",
-                  width: "300px",
-                  objectFit: "cover",
-                })}
+                className="rounded-md w-72 object-cover"
               />
-              <div
-                className={css({
-                  textAlign: "left",
-                  width: "100%",
-                  maxWidth: "300px",
-                  base: { pt: `${10 / 3.75}vw` },
-                  md: { pt: "10px" },
-                })}
-              >
-                <h3
-                  className={css({
-                    fontWeight: "bold",
-                    base: { fontSize: `${12 / 3.75}vw` },
-                    md: { fontSize: "14px" },
-                  })}
-                >
+              <div className="text-left w-full max-w-xs pt-[2.67vw] md:pt-2.5">
+                <h3 className="font-bold text-[3.2vw] md:text-sm">
                   {recruitment.attributes.occupation}
                 </h3>
-                <div className={css({ display: "flex", color: "#666" })}>
-                  <p
-                    className={css({
-                      base: { fontSize: `${12 / 3.75}vw` },
-                      md: { fontSize: "14px" },
-                    })}
-                  >
+                <div className="flex text-gray-500">
+                  <p className="text-[3.2vw] md:text-sm">
                     <FontAwesomeIcon icon={faYenSign} />
                     {recruitment.attributes.minimum_salary}〜
                   </p>
-                  <p
-                    className={css({
-                      base: { fontSize: `${12 / 3.75}vw` },
-                      md: { fontSize: "14px" },
-                    })}
-                  >
+                  <p className="text-[3.2vw] md:text-sm">
                     {recruitment.attributes.maximum_salary}
                   </p>
-                  <p
-                    className={css({
-                      base: {
-                        fontSize: `${12 / 3.75}vw`,
-                        marginLeft: `${10 / 3.75}vw`,
-                      },
-                      md: { fontSize: "14px", marginLeft: "15px" },
-                    })}
-                  >
+                  <p className="text-[3.2vw] md:text-sm ml-[2.67vw] md:ml-3.5">
                     <FontAwesomeIcon icon={faLocationDot} />
                     <span> </span>
                     {recruitment.attributes.work_place}

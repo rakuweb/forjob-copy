@@ -199,6 +199,126 @@ const OtherImageSlider: React.FC<{ companies: Company[] }> = ({
               </Link>
             </div>
           ))}
+          {imageAndNames.map((item, index) => (
+            <div key={index} style={{ textAlign: "center" }}>
+              <Link href={`/company/${item.id}`}>
+                {" "}
+                <img
+                  src={item.url}
+                  alt={`Slide ${index}`}
+                  style={{
+                    width: "95%",
+                    height: "20vw",
+                    borderRadius: "5px",
+                    objectFit: "cover",
+                    maxHeight: "300px",
+                  }}
+                />
+                <div
+                  className={css({
+                    display: "flex",
+                    alignItems: "center",
+                    paddingTop: "10px",
+                  })}
+                >
+                  <img
+                    src={item.logo}
+                    style={{}}
+                    className={css({
+                      base: { width: `${20 / 3.75}vw` },
+                      md: { width: "30px" },
+                    })}
+                  />
+                  <p
+                    style={{ fontWeight: "bold" }}
+                    className={css({
+                      base: { fontSize: `${10 / 3.75}vw ` },
+                      md: { fontSize: "14px" },
+                    })}
+                  >
+                    　{item.name}
+                  </p>
+                </div>
+                <p style={{ marginTop: "10px" }}>{item.philosophy_title}</p>
+                <p
+                  className={css({
+                    marginRight: "10px",
+                    fontSize: { base: `8px`, lg: `10px` },
+                    border: "1px solid #21BDDB",
+                    color: "#fff",
+                    backgroundColor: "#21BDDB",
+                    padding: "5px 20px",
+                    borderRadius: "100px",
+                    width: "fit-content",
+                    base: { padding: "2px 10px" },
+                    md: { padding: "5px 20px" },
+                  })}
+                >
+                  {item.industry}
+                </p>
+              </Link>
+            </div>
+          ))}
+          {imageAndNames.map((item, index) => (
+            <div key={index} style={{ textAlign: "center" }}>
+              <Link href={`/company/${item.id}`}>
+                {" "}
+                <img
+                  src={item.url}
+                  alt={`Slide ${index}`}
+                  style={{
+                    width: "95%",
+                    height: "20vw",
+                    borderRadius: "5px",
+                    objectFit: "cover",
+                    maxHeight: "300px",
+                  }}
+                />
+                <div
+                  className={css({
+                    display: "flex",
+                    alignItems: "center",
+                    paddingTop: "10px",
+                  })}
+                >
+                  <img
+                    src={item.logo}
+                    style={{}}
+                    className={css({
+                      base: { width: `${20 / 3.75}vw` },
+                      md: { width: "30px" },
+                    })}
+                  />
+                  <p
+                    style={{ fontWeight: "bold" }}
+                    className={css({
+                      base: { fontSize: `${10 / 3.75}vw ` },
+                      md: { fontSize: "14px" },
+                    })}
+                  >
+                    　{item.name}
+                  </p>
+                </div>
+                <p style={{ marginTop: "10px" }}>{item.philosophy_title}</p>
+                <p
+                  className={css({
+                    marginRight: "10px",
+                    fontSize: { base: `8px`, lg: `10px` },
+                    border: "1px solid #21BDDB",
+                    color: "#fff",
+                    backgroundColor: "#21BDDB",
+                    padding: "5px 20px",
+                    borderRadius: "100px",
+                    width: "fit-content",
+                    base: { padding: "2px 10px" },
+                    md: { padding: "5px 20px" },
+                  })}
+                >
+                  {item.industry}
+                </p>
+              </Link>
+            </div>
+          ))}
         </Slider>
       )}
     </div>
